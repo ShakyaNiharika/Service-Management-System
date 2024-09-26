@@ -28,7 +28,7 @@ public class makeBooking extends Application{
 	    public void start(Stage primaryStage) {
 		 Pane pane = new Pane();
 		 	//Main Content
-		 	Label head = new Label("Make Booking");
+		 	Label head = new Label("Make Appointment");
 	        head.setFont(new Font("Verdana", 24));
 	        head.setTextFill(Color.BLACK);
 	        head.setLayoutX(100);
@@ -41,7 +41,7 @@ public class makeBooking extends Application{
 	        service_name.setLayoutY(80);
 	       
 	        ComboBox<String> comboBox = new ComboBox<>();
-	        comboBox.setLayoutX(150);
+	        comboBox.setLayoutX(180);
 	        comboBox.setLayoutY(80);
 	        comboBox.setPrefWidth(180);
 	        comboBox.setPrefHeight(20);
@@ -53,54 +53,54 @@ public class makeBooking extends Application{
 	        estimated_hrs.setLayoutY(130);
 	        
 	        TextField estimatedField = new TextField();
-	        estimatedField.setLayoutX(150);
+	        estimatedField.setLayoutX(180);
 	        estimatedField.setLayoutY(130);
 	        estimatedField.setPrefWidth(180);
 	        estimatedField.setPrefHeight(20);
 	        
 	      //Label for date
-	        Label lbldate= new Label(" Booking Date");
-	        lbldate.setLayoutX(40);
+	        Label lbldate= new Label(" Appointment Date:");
+	        lbldate.setLayoutX(15);
 	        lbldate.setLayoutY(175);
 	        lbldate.setFont(new Font("Verdana", 15)); 
 	        lbldate.setTextFill(Color.BLACK);
 	        
 	      //TextField for booking date
 	        DatePicker datePicker = new DatePicker();
-	        datePicker.setLayoutX(150);
+	        datePicker.setLayoutX(180);
 	        datePicker.setLayoutY(175);
 	        datePicker.setPrefWidth(180);
 	        datePicker.setPrefHeight(20);
 	        
 	      //Label for time
-	        Label lbltime = new Label(" Booking Time");
-	        lbltime.setLayoutX(40);
+	        Label lbltime = new Label(" Appointment Time:");
+	        lbltime.setLayoutX(15);
 	        lbltime.setLayoutY(226);
 	        lbltime.setFont(new Font("Verdana", 15)); 
 	        lbltime.setTextFill(Color.BLACK);
 	        
 	        TextField timeField = new TextField();
-	        timeField.setLayoutX(150);
+	        timeField.setLayoutX(180);
 	        timeField.setLayoutY(226);
 	        timeField.setPrefWidth(180);
 	        timeField.setPrefHeight(20);
 	        
 	      //Label for time
-	        Label lblprice = new Label("Price");
-	        lblprice.setLayoutX(40);
+	        Label lblprice = new Label("Price:");
+	        lblprice.setLayoutX(85);
 	        lblprice.setLayoutY(272);
 	        lblprice.setFont(new Font("Verdana", 15)); 
 	        lblprice.setTextFill(Color.BLACK);
 	        
 	        TextField totalField = new TextField();
-	        totalField.setLayoutX(150);
+	        totalField.setLayoutX(180);
 	        totalField.setLayoutY(272);
 	        totalField.setPrefWidth(180);
 	        totalField.setPrefHeight(20);
 	      
 	        Button btnMakeBooking=new Button();
-	        btnMakeBooking.setText("Make Booking");
-	        btnMakeBooking.setLayoutX(150);
+	        btnMakeBooking.setText("Make Apooitment");
+	        btnMakeBooking.setLayoutX(180);
 	        btnMakeBooking.setLayoutY(320);
 	        btnMakeBooking.setPrefWidth(180);
 	        btnMakeBooking.setPrefHeight(20);
@@ -212,6 +212,7 @@ public class makeBooking extends Application{
 		        bookingStatement.setString(4, booking.getBooking_time());
 		        bookingStatement.setFloat(5, booking.getPrice());
 		        bookingStatement.setFloat(6, customer_id);
+//		        bookingStatement.setFloat(7, booking.getTotal_cost());
 		        
 		        int rowsAffected = bookingStatement.executeUpdate(); //Insert Record
 		        if (rowsAffected > 0) {

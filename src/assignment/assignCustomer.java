@@ -58,6 +58,12 @@ public class assignCustomer extends Application {
         head.setLayoutX(20);
         head.setLayoutY(22);
         
+        Label userName = new Label("Staff: Raju");
+        userName.setFont(new Font("Verdana", 24));
+        userName.setTextFill(Color.BLACK);
+        userName.setLayoutX(800);
+        userName.setLayoutY(22);
+        
         ImageView user = new ImageView(new Image(getClass().getResourceAsStream("userphoto.jpg")));
         user.setFitWidth(180); // Adjust image width as needed
         user.setFitHeight(140);
@@ -115,26 +121,26 @@ public class assignCustomer extends Application {
 	    addCustomer.setLayoutY(310);
 	    addCustomer.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
         
-//        //Button for the sideBar
-//        Button appointment=new Button();
-//        appointment.setText("Arrange Appointments");
-//        appointment.setFont(new Font("Verdana", 18));
-//        appointment.setTextFill(Color.BLACK);
-//        appointment.setLayoutX(50);
-//        appointment.setLayoutY(360);
-//        appointment.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-       
-
-//        //Button for the sideBar
-//        Button reschedule=new Button();
-//        reschedule.setText("Reschedule Services");
-//        reschedule.setFont(new Font("Verdana", 18));
-//        reschedule.setTextFill(Color.BLACK);
-//        reschedule.setLayoutX(60);
-//        reschedule.setLayoutY(360);
-//        reschedule.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-       
+//      //Button for the sideBar
+        Button services=new Button();
+        services.setText("Manage Services");
+        services.setFont(new Font("Verdana", 18));
+        services.setTextFill(Color.BLACK);
+        services.setLayoutX(50);
+        services.setLayoutY(360);
+        services.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
         
+        services.setOnAction(event -> {
+            // Open the Update profile page
+
+        	((Stage) services.getScene().getWindow()).close();
+            staffManageService nextmanagesevice = new staffManageService();
+            try {
+            	nextmanagesevice.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }});
+       
         //Button for logout
         Button btnLogout=new Button();
         btnLogout.setText("Logout");
@@ -165,7 +171,7 @@ public class assignCustomer extends Application {
         
         TableView<NewBooking> table1 = new TableView<NewBooking>();
         table1.setPrefWidth(800);
-        table1.setPrefHeight(250);
+        table1.setPrefHeight(300);
         table1.setLayoutX(280);
         table1.setLayoutY(85);
 
@@ -324,7 +330,7 @@ public class assignCustomer extends Application {
         btnAssign.setOnAction(event -> {
             // Check if both customer name and booking ID are entered
             if (customer_namedField.getText().isEmpty() || booking_idField.getText().isEmpty() || comboBoxForAssign.getValue() == null) {
-                showAlert("Error", "Please select a booking and worker to assign.");
+                showAlert("Error", "Please select the customer name and worker to assign.");
             } else {
                 // Get the selected booking ID
                 int bookingId = Integer.parseInt(booking_idField.getText());
@@ -338,7 +344,7 @@ public class assignCustomer extends Application {
                 // Check if the update was successful
                 if (updateSuccess) {
                     // Show a success message
-                    showAlert("Success", "Status updated to 'completed' and worker assigned successfully!");
+                    showAlert("Success", "Worker assigned successfully!");
                     // Optionally, you can refresh the table here
                     ((Stage) btnAssign.getScene().getWindow()).close();
                     assignCustomer openAssignCustomer = new assignCustomer();
@@ -355,47 +361,8 @@ public class assignCustomer extends Application {
         });
 
 
-        
-       
-//        btnAssign.setOnAction((event) -> {
-//            // Check if customer ID is entered
-//            if (booking_idField.getText().isEmpty()) {
-//                showAlert("Error", "Please select the customer ID to update.");
-//            } else {
-//                // Reading values from UI
-//                int customer_id = Integer.parseInt(customerField.getText()); // string->int
-//                String Username = UsernameField.getText();
-//                String Password = passwordField.getText();
-//                String address = addressField.getText();
-//                String phone = phoneField.getText();
-//                String email_address = emailField.getText();
-//                LocalDate Date_of_birth = date_of_birthField.getValue(); // Convert string to LocalDate
-//                String Gender = "Female";
-//                if (r1.isSelected()) {
-//                    Gender = "Male";
-//                }
-//
-//                NewCustomer person = new NewCustomer(customer_id, Username, Password, address, phone, email_address, Date_of_birth, Gender);
-//                boolean res = updateRecord(person); // call method
-//                if (res) {
-//                    showAlert("Success", "Record updated successfully!");
-//                    System.out.println("Record Saved");
-//                 // Fefress the page
-//                	((Stage) btnUpdate.getScene().getWindow()).close();
-//                    StaffDashboard OpenStaffDashboard = new StaffDashboard();
-//                    try {
-//                    	OpenStaffDashboard.start(new Stage());
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                }} else {
-//                	  showAlert("Error", "Failed to update the record.");
-//                      System.out.println("Error: Failed to update the record.");
-//                }
-//            }
-//        });
-        
-        headerPane.getChildren().addAll(head);
-        sidePane.getChildren().addAll(user,manageCustomer,btnadd,addCustomer,
+        headerPane.getChildren().addAll(head,userName);
+        sidePane.getChildren().addAll(user,manageCustomer,btnadd,addCustomer,services,
         		btnLogout,lblHeadManageCus,table1,lblcustomer_name,customer_namedField,lblbooking_id,booking_idField,lblservice_name,service_nameField,lblstatus,statusField,lblassign,comboBoxForAssign,btnAssign);
 //        pane.getChildren().add(table1);
         Pane rootPane = new Pane(headerPane, sidePane);

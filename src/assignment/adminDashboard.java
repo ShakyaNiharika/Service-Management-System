@@ -35,7 +35,7 @@ public class adminDashboard extends Application {
 		// TODO Auto-generated method stub
 		//Pane for background color
         Pane pane = new Pane();
-        pane.setStyle("-fx-background-color: #F3D5F6;");
+        pane.setStyle("-fx-background-color: #E6E7E8;");
         pane.setPrefHeight(1000);
         pane.setPrefWidth(1180);
       
@@ -61,9 +61,9 @@ public class adminDashboard extends Application {
 
         // Create a Label for the header
         Label head = new Label("Admin Dashboard");
-        head.setFont(new Font("Verdana", 24));
+        head.setFont(new Font("Verdana", 28));
         head.setTextFill(Color.BLACK);
-        head.setLayoutX(20);
+        head.setLayoutX(40);
         head.setLayoutY(22);
         
       
@@ -106,26 +106,6 @@ public class adminDashboard extends Application {
                 e.printStackTrace();
             }});
        
-//        //Button for the My Profile
-//	    Button btnadd=new Button();
-//	    btnadd.setText("Add Customer");
-//	    btnadd.setFont(new Font("Verdana", 18));
-//	    btnadd.setTextFill(Color.BLACK);
-//	    btnadd.setLayoutX(50);
-//	    btnadd.setLayoutY(260);
-//	    btnadd.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-//	    
-//	    //When Add Customer is clicked
-//	    btnadd.setOnAction(event -> {
-//	    	addCustomer nextGUI = new addCustomer();
-//            try {
-//            	((Stage) btnadd.getScene().getWindow()).close();
-//                nextGUI.start(new Stage());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
-//	    
 	    Button assignCustomer=new Button();
 	    assignCustomer.setText("View Customers");
 	    assignCustomer.setFont(new Font("Verdana", 18));
@@ -164,26 +144,27 @@ public class adminDashboard extends Application {
             } catch (Exception e) {
                 e.printStackTrace();
             }});
-//        //Button for the sideBar
-//        Button appointment=new Button();
-//        appointment.setText("Arrange Appointments");
-//        appointment.setFont(new Font("Verdana", 18));
-//        appointment.setTextFill(Color.BLACK);
-//        appointment.setLayoutX(50);
-//        appointment.setLayoutY(360);
-//        appointment.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-//       
-//
-////        //Button for the sideBar
-////        Button reschedule=new Button();
-////        reschedule.setText("Reschedule Services");
-////        reschedule.setFont(new Font("Verdana", 18));
-////        reschedule.setTextFill(Color.BLACK);
-////        reschedule.setLayoutX(60);
-////        reschedule.setLayoutY(360);
-////        reschedule.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-//       
-//        
+//       //Button for the sideBar
+        Button report=new Button();
+        report.setText("Report");
+        report.setFont(new Font("Verdana", 18));
+        report.setTextFill(Color.BLACK);
+        report.setLayoutX(50);
+        report.setLayoutY(410);
+        report.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+       
+        //Navigate to view staff
+        report.setOnAction(event -> {
+            // Open the Update profile page
+
+        	((Stage) report.getScene().getWindow()).close();
+            Total_cost nextreport = new Total_cost();
+            try {
+            	nextreport.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }});
+        
         //Button for logout
         Button btnLogout=new Button();
         btnLogout.setText("Logout");
@@ -191,7 +172,7 @@ public class adminDashboard extends Application {
 //        btnLogout.setLayoutX(1);
         btnLogout.setLayoutY(560);
         btnLogout.setPrefWidth(260);
-        btnLogout.setPrefHeight(40);
+        btnLogout.setPrefHeight(60);
         btnLogout.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
         
       //Navigate to login pagelogoutpage
@@ -283,7 +264,7 @@ public class adminDashboard extends Application {
         });
         headerPane.getChildren().addAll(head);
         sidePane.getChildren().addAll(addServices,user,manageServices,assignCustomer,btnviewStaff,
-        		btnLogout,HeadAddService,addServiceImageView,service_name,serviceField,description,descriptionField,lblPrice,PriceField,btnAddServices);
+        		report,btnLogout,HeadAddService,addServiceImageView,service_name,serviceField,description,descriptionField,lblPrice,PriceField,btnAddServices);
 //        pane.getChildren().add(table1);
         Pane rootPane = new Pane(pane,headerPane, sidePane);
         // Create a Scene with the root Pane

@@ -35,6 +35,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import assignment.NewBooking;
 
 public class rescheduleBooking extends Application {
 
@@ -44,7 +45,7 @@ public class rescheduleBooking extends Application {
 		
 		//Pane for background color
 	        Pane pane = new Pane();
-	        pane.setStyle("-fx-background-color: #F3D5F6;");
+	        pane.setStyle("-fx-background-color: #E6E7E8;");
 	        pane.setPrefHeight(1000);
 	        pane.setPrefWidth(1180);
 	        
@@ -94,6 +95,12 @@ public class rescheduleBooking extends Application {
 	        head.setTextFill(Color.BLACK);
 	        head.setLayoutX(20);
 	        head.setLayoutY(22);
+	        
+	        Label userName = new Label("Username: Reshma");
+	        userName.setFont(new Font("Verdana", 24));
+	        userName.setTextFill(Color.BLACK);
+	        userName.setLayoutX(860);
+	        userName.setLayoutY(22);
 	       
 //	        
 	        //hereeeeee
@@ -277,7 +284,7 @@ public class rescheduleBooking extends Application {
 	        datePickerField.setPrefHeight(30);
 	        
 	        Label bookingTime = new Label("Booking Time");
-	        bookingTime.setLayoutX(700);
+	        bookingTime.setLayoutX(685);
 	        bookingTime.setLayoutY(490);
 	        bookingTime.setFont(new Font("Verdana", 16)); 
 	        bookingTime.setTextFill(Color.BLACK);	
@@ -311,6 +318,7 @@ public class rescheduleBooking extends Application {
 	                        datePickerField.setValue(booking.getBooking_date());
 	                        bookingTimeField.setText(booking.getBooking_time());
 	                        System.out.println("Booking record found: " + booking);
+	                        showAlert("Success", "Booking found");
 	                    } else {
 	                        showAlert("Error", "Booking record not found");
 	                        System.out.println("Booking record not found for ID: " + bookingId);
@@ -329,49 +337,48 @@ public class rescheduleBooking extends Application {
 	        btnUpdate.setPrefWidth(100);
 	        btnUpdate.setPrefHeight(40);
 	        btnUpdate.setStyle("-fx-background-color:#285884; -fx-text-fill: white;");
-//	        btnUpdate.setOnAction((event) -> {
-//	            // Check if booking ID is entered
-//	            if (bookingIDField.getText().isEmpty()) {
-//	                showAlert("Error", "Please select the booking ID to update.");
-//	            } else {
-//	                try {
-//	                    // Reading values from UI
-//	                    int bookingId = Integer.parseInt(bookingIDField.getText());
-//	                    LocalDate bookingDate = datePickerField.getValue();
-//	                    String bookingTimeValue = bookingTimeField.getText(); // Rename the variable here
-//	                    
-//	                    // Retrieve the selected service name from the ComboBox
-//	                    String selectedServiceName = comboBoxForAssign.getValue();
-//	                    
-//	                    // Creating a NewBooking instance
-//	                    NewBooking booking = new NewBooking(bookingId, selectedService, bookingDate, bookingTimeValue);
-//	                    
-//	                    // Call the updateRecord method with the booking instance
-//	                    boolean res = updateRecord(booking);
-//	                    if (res) {
-//	                        showAlert("Success", "Record updated successfully!");
-//	                        System.out.println("Record Saved");
-//	                        // Refresh the page
-//	                        ((Stage) btnUpdate.getScene().getWindow()).close();
-//	                        manageService nextManageService = new manageService();
-//	                        nextManageService.start(new Stage());
-//	                    } else {
-//	                        showAlert("Error", "Failed to update the record.");
-//	                        System.out.println("Error: Failed to update the record.");
-//	                    }
-//	                } catch (NumberFormatException e) {
-//	                    showAlert("Error", "Invalid booking ID format.");
-//	                    System.out.println("Invalid booking ID format: " + bookingIDField.getText());
-//	                }
-//	            }
-//	        });
+	        btnUpdate.setOnAction((event) -> {
+	            // Check if booking ID is entered
+	            if (bookingIDField.getText().isEmpty()) {
+	                showAlert("Error", "Please select the booking ID to update.");
+	            } else {
+	                try {
+	                    // Reading values from UI
+	                    int bookingId = Integer.parseInt(bookingIDField.getText());
+	                    LocalDate bookingDate = datePickerField.getValue();
+	                    String bookingTimeValue = bookingTimeField.getText(); // Rename the variable here
+	                    
+	                  
+	                    
+	                    // Creating a NewBooking instance
+	                    NewBooking booking = new NewBooking(bookingId, bookingDate, bookingTimeValue);
+	                    
+	                    // Call the updateRecord method with the booking instance
+	                    boolean res = updateRecord(booking);
+	                    if (res) {
+	                        showAlert("Success", "Appointment updated successfully!");
+	                        System.out.println("Record Saved");
+	                        // Refresh the page
+	                        ((Stage) btnUpdate.getScene().getWindow()).close();
+	                        rescheduleBooking here = new rescheduleBooking();
+	                        here.start(new Stage());
+	                    } else {
+	                        showAlert("Error", "Failed to update the record.");
+	                        System.out.println("Error: Failed to update the record.");
+	                    }
+	                } catch (NumberFormatException e) {
+	                    showAlert("Error", "Invalid booking ID format.");
+	                    System.out.println("Invalid booking ID format: " + bookingIDField.getText());
+	                }
+	            }
+	        });
 
 
 
 
 	        
 	        // Add the Label to the headerPane
-	        headerPane.getChildren().addAll(head);
+	        headerPane.getChildren().addAll(head,userName);
 	        sidePane.getChildren().addAll(user,dashboard,lblHeadReschedule,profile,appointment,reschedule,btnLogout,table1,
 	        		bookingID,bookingIDField,serviceName,comboBoxForAssign,booingdate,datePickerField,bookingTime,bookingTimeField,btnSearch,btnUpdate);
 //	        servicesPane.getChildren().addAll(lblPlumbing,lblDisc,lblDiscPara,lblDuration,lblPrice,btnBooking);
@@ -507,32 +514,24 @@ public class rescheduleBooking extends Application {
 		    String DBUSER = "root";
 		    String DBPASS = "niharika@123";
 		    String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
-		    String sql = "UPDATE bookings SET service_id = (SELECT service_id FROM services WHERE service_name = ?), booking_date = ?, booking_time = ? WHERE booking_id = ?";
+		    String sql = "UPDATE bookings SET booking_date=?, booking_time=? WHERE booking_id=?";
 		    try {
 		        Class.forName(DRIVER); // Loading driver
 		        Connection conn = DriverManager.getConnection(URL, DBUSER, DBPASS); // Establishing connection with the database server
 		        PreparedStatement pstat = conn.prepareStatement(sql);
 		        
-		        // Fetch the service_id corresponding to the selected service name
-		        String selectedServiceName = booking.getServices().getService_name();
-		        PreparedStatement serviceStat = conn.prepareStatement("SELECT service_id FROM services WHERE service_name = ?");
-		        serviceStat.setString(1, selectedServiceName);
-		        ResultSet serviceResult = serviceStat.executeQuery();
-		        int serviceId = 0;
-		        if (serviceResult.next()) {
-		            serviceId = serviceResult.getInt("service_id");
-		        }
+		        // Set the values for the PreparedStatement
+		        pstat.setString(1, booking.getBooking_date().toString()); // Assuming booking_date is a LocalDate
+		        pstat.setString(2, booking.getBooking_time());
+		        pstat.setInt(3, booking.getBooking_id());
 
-		        pstat.setInt(1, serviceId);
-		        pstat.setString(2, booking.getBooking_date().toString()); // Assuming booking_date is a LocalDate
-		        pstat.setString(3, booking.getBooking_time());
-		        pstat.setInt(4, booking.getBooking_id());
-
+		        // Execute the update operation
 		        int rowsAffected = pstat.executeUpdate();
 		        if (rowsAffected > 0) {
 		            result = true;
 		        }
 
+		        // Close resources
 		        pstat.close();
 		        conn.close();
 		    } catch (Exception ex) {
@@ -540,46 +539,6 @@ public class rescheduleBooking extends Application {
 		    }
 		    return result;
 		}
-
-
-
-
-//		public boolean updateRecord(NewCustomer person) {
-//			//pid, fullName, address, gender, ageGroup, reading, playing, other, login_id, pass_word
-//			boolean result = false;
-//			String DRIVER ="com.mysql.cj.jdbc.Driver";
-//			String HOST ="localhost";
-//			int PORT=3306;
-//			String DATABASE ="assignment";
-//			String DBUSER="root";
-//			String DBPASS="niharika@123";
-//			String URL = "jdbc:mysql://"+HOST+":"+PORT+"/"+DATABASE;
-//			String sql="UPDATE customers  SET username=?, pass_word=?, address=?, phone_number=?, email_address=?, date_of_birth=?, gender=? WHERE customer_id=?";
-//			try {
-//				Class.forName(DRIVER); //loading driver
-//				Connection conn = DriverManager.getConnection(URL, DBUSER, DBPASS);//connection with database server
-//				PreparedStatement pstat = conn.prepareStatement(sql);			
-//				pstat.setString(1, person.getUsername());
-//				pstat.setString(2, person.getPass_word());
-//				pstat.setString(3, person.getAddress());
-//				pstat.setString(4, person.getPhone_number());
-//				pstat.setString(5, person.getEmail_address());
-//				LocalDate dateOfBirth = person.getDate_of_birth();
-//				String dateOfBirthStr = dateOfBirth.toString();
-//				pstat.setString(6, dateOfBirthStr); 
-//				pstat.setString(7, person.getGender());
-//				pstat.setInt(8, person.getCustomer_id());
-//				
-//				pstat.executeUpdate();//Update Record
-//				pstat.close();
-//				conn.close();
-//				result=true;
-//			}
-//			catch(Exception ex) {
-//				System.out.println("Error : "+ex.getMessage());
-//			}
-//			return result;
-//		}
 
 	// Method to display an alert dialog
 	    private void showAlert(String title, String message) {

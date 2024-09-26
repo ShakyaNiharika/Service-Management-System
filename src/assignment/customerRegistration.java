@@ -30,14 +30,15 @@ public class customerRegistration extends Application {
 	    public void start(Stage primaryStage) throws Exception {
 			//Pane for background color
 	        Pane pane = new Pane();
-	        pane.setStyle("-fx-background-color: lightgreen;");
+	        pane.setStyle("-fx-background-color: #E6E7E8;");
 	        pane.setPrefHeight(1000);
 	        pane.setPrefWidth(1000);
 	        
 	        
+	        
 	        // Create a Pane for login part
 	        Pane sidePane = new Pane();
-	        sidePane.setStyle("-fx-background-color: lightblue;");
+	        sidePane.setStyle("-fx-background-color: #CBD5E1;");
 	        sidePane.setPrefHeight(580);
 	        sidePane.setPrefWidth(450);
 	        sidePane.setLayoutX(494);
@@ -45,7 +46,7 @@ public class customerRegistration extends Application {
 	        
 	     // Create a Pane for picture part
 	        Pane leftPane = new Pane();
-	        leftPane.setStyle("-fx-background-color: lightyellow;");
+	        leftPane.setStyle("-fx-background-color: #FDFEFE;");
 	        leftPane.setPrefHeight(580);
 	        leftPane.setPrefWidth(450);
 	        leftPane.setLayoutX(44);
@@ -53,15 +54,15 @@ public class customerRegistration extends Application {
 
 	     // Create an ImageView to display the image
             ImageView profileImageView = new ImageView(new Image(getClass().getResourceAsStream("front.jpg")));
-            profileImageView.setFitWidth(300); // Adjust image width as needed
-            profileImageView.setFitHeight(240);
+            profileImageView.setFitWidth(310); // Adjust image width as needed
+            profileImageView.setFitHeight(300);
             profileImageView.setPreserveRatio(true);
-            profileImageView.setLayoutX(100);
+            profileImageView.setLayoutX(70);
             profileImageView.setLayoutY(160);
             
          // Creating a Label
 	        Label txtfield = new Label("Service Management System");
-	        txtfield.setLayoutX(70);
+	        txtfield.setLayoutX(60);
 	        txtfield.setLayoutY(100);
 	        txtfield.setFont(new Font("Verdana", 24)); 
 	        txtfield.setTextFill(Color.BLACK);
@@ -239,7 +240,7 @@ public class customerRegistration extends Application {
 
 	                // Check if the record was successfully inserted
 	                if (isSuccess) {
-	                    showAlert("Success", "Record inserted successfully!");
+	                    showAlert("Success", "Registered successfully!");
 	                    firstWindow  nextGUI= new firstWindow();
 	    	        	try {
 	    					nextGUI.start(new Stage());

@@ -35,7 +35,7 @@ public class adminViewCustomer extends Application {
 		// TODO Auto-generated method stub
 		//Pane for background color
         Pane pane = new Pane();
-//        pane.setStyle("-fx-background-color: #F3D5F6;");
+        pane.setStyle("-fx-background-color: #E6E7E8;");
         pane.setPrefHeight(1000);
         pane.setPrefWidth(1180);
       
@@ -65,14 +65,6 @@ public class adminViewCustomer extends Application {
         head.setTextFill(Color.BLACK);
         head.setLayoutX(20);
         head.setLayoutY(22);
-        
-        //image of dashboard
-        ImageView homeimg = new ImageView(new Image(getClass().getResourceAsStream("home.png")));
-        homeimg.setFitWidth(80); // Adjust image width as needed
-        homeimg.setFitHeight(80);
-        homeimg.setPreserveRatio(true);
-        homeimg.setLayoutX(15);
-        homeimg.setLayoutY(182);
         
       
         Button addServices=new Button();
@@ -152,6 +144,25 @@ public class adminViewCustomer extends Application {
                 e.printStackTrace();
             }});
 //       
+        Button report=new Button();
+        report.setText("Report");
+        report.setFont(new Font("Verdana", 18));
+        report.setTextFill(Color.BLACK);
+        report.setLayoutX(50);
+        report.setLayoutY(410);
+        report.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+       
+        //Navigate to view staff
+        report.setOnAction(event -> {
+            // Open the Update profile page
+
+        	((Stage) report.getScene().getWindow()).close();
+            Total_cost nextreport = new Total_cost();
+            try {
+            	nextreport.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }});
 //      
         //Button for logout
         Button btnLogout=new Button();
@@ -412,7 +423,7 @@ public class adminViewCustomer extends Application {
 			                    System.out.println("Record Saved");
 			                 // Fefress the page
 			                	((Stage) btnUpdate.getScene().getWindow()).close();
-			                    StaffDashboard OpenStaffDashboard = new StaffDashboard();
+			                    adminViewCustomer OpenStaffDashboard = new adminViewCustomer();
 			                    try {
 			                    	OpenStaffDashboard.start(new Stage());
 			                    } catch (Exception e) {
@@ -428,7 +439,7 @@ public class adminViewCustomer extends Application {
 			        
 			        
         headerPane.getChildren().addAll(head);
-        sidePane.getChildren().addAll(homeimg,user,addServices,manageServices,assignCustomer,btnviewStaff,btnLogout,
+        sidePane.getChildren().addAll(user,addServices,manageServices,assignCustomer,btnviewStaff,report,btnLogout,
         		lblHeadManageCus,table1,lblcusId,customerField,lblusername,UsernameField,lblpassword,passwordField,
         		lbladdress,addressField,lblphone,phoneField,lblemail,emailField,lbldate,date_of_birthField,lblgender,r1,r2,r3,btnSearch,btnUpdate);
 //        pane.getChildren().add(table1);

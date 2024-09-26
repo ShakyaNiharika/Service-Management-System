@@ -45,7 +45,7 @@ public class customer_history extends Application {
     public void start(Stage primaryStage) {
         // Pane for background color
         Pane pane = new Pane();
-        pane.setStyle("-fx-background-color: #F3D5F6;");
+        pane.setStyle("-fx-background-color: #E6E7E8;");
         pane.setPrefHeight(1000);
         pane.setPrefWidth(1180);
 
@@ -75,6 +75,12 @@ public class customer_history extends Application {
         head.setTextFill(Color.BLACK);
         head.setLayoutX(20);
         head.setLayoutY(22);
+        
+        Label userName = new Label("Username: Nirmala");
+        userName.setFont(new Font("Verdana", 24));
+        userName.setTextFill(Color.BLACK);
+        userName.setLayoutX(860);
+        userName.setLayoutY(22);
 
 
         Button dashboard = new Button();
@@ -239,7 +245,7 @@ public class customer_history extends Application {
 
 
         // Add the Label to the headerPane
-        headerPane.getChildren().addAll(head);
+        headerPane.getChildren().addAll(head,userName);
         sidePane.getChildren().addAll(user, dashboard, profile, appointment,reschedule, btnLogout,lblHeadHistory, table1);
 
         // Or, you can use a Pane directly if you don't need vertical stacking

@@ -31,15 +31,14 @@ public class staffRegistration extends Application {
 		// TODO Auto-generated method stub
 		//Pane for background color
         Pane pane = new Pane();
-        pane.setStyle("-fx-background-color: lightgreen;");
+        pane.setStyle("-fx-background-color: #E6E7E8;");
         pane.setPrefHeight(1000);
         pane.setPrefWidth(1000);
         
 
-        
         // Create a Pane for login part
         Pane sidePane = new Pane();
-        sidePane.setStyle("-fx-background-color: lightblue;");
+        sidePane.setStyle("-fx-background-color: #CBD5E1;");
         sidePane.setPrefHeight(580);
         sidePane.setPrefWidth(450);
         sidePane.setLayoutX(494);
@@ -47,7 +46,7 @@ public class staffRegistration extends Application {
         
      // Create a Pane for picture part
         Pane leftPane = new Pane();
-        leftPane.setStyle("-fx-background-color: lightyellow;");
+        leftPane.setStyle("-fx-background-color: #FDFEFE;");
         leftPane.setPrefHeight(580);
         leftPane.setPrefWidth(450);
         leftPane.setLayoutX(44);
@@ -68,7 +67,7 @@ public class staffRegistration extends Application {
         txtfield.setFont(new Font("Verdana", 24)); 
         txtfield.setTextFill(Color.BLACK);
         //Label for heading
-        Label lblhead = new Label("User Registration for Service Management");
+        Label lblhead = new Label("Staff Registration for Service Management");
         lblhead.setLayoutX(20);
         lblhead.setLayoutY(20);
         lblhead.setFont(new Font("Verdana", 16)); 
@@ -198,22 +197,7 @@ public class staffRegistration extends Application {
         r1.setToggleGroup(group);
         r2.setToggleGroup(group);
         r3.setToggleGroup(group);
-//        Label lblStaffRole = new Label("Staff Role");
-//        lblStaffRole.setLayoutX(538);
-//        lblStaffRole.setLayoutY(525);
-//        lblStaffRole.setFont(new Font("bold", 15)); 
-//        lblStaffRole.setTextFill(Color.BLACK);
 //        
-//        ComboBox cmbStaffRole=new ComboBox();
-//        cmbStaffRole.setLayoutX(640);
-//        cmbStaffRole.setLayoutY(525);
-//		List lstType = new ArrayList();
-//		lstType.add("Plumbing"); 
-//		lstType.add("Cleaning"); 
-//		lstType.add("Electrician"); 
-//		cmbStaffRole.getItems().addAll(lstType);
-//		cmbStaffRole.setPromptText("Choose the Role");
-        
         //Signin Button
         Button btnSignin=new Button();
         btnSignin.setText("Sign In");
@@ -222,11 +206,6 @@ public class staffRegistration extends Application {
         btnSignin.setPrefWidth(260);
         btnSignin.setPrefHeight(30);
         btnSignin.setStyle("-fx-background-color:#285884; -fx-text-fill: white;");
-        
-//        btnSignin.setOnAction(event -> {
-//            // Open the login page
-//        	firstWindow();
-//        });
         
         btnSignin.setOnAction(event -> {
             String username = usernameField.getText();
@@ -254,7 +233,7 @@ public class staffRegistration extends Application {
 
                 // Check if the record was successfully inserted
                 if (isSuccess) {
-                    showAlert("Success", "Record inserted successfully!");
+                    showAlert("Success", "Registered successfully!");
                     staffLogin  nextGUI= new staffLogin();
     	        	try {
     					nextGUI.start(new Stage());

@@ -11,6 +11,7 @@ public class NewBooking {
 	LocalDate booking_date;
 	String booking_time; 
 	Float price;
+//	Float total_cost;
 	public int getBooking_id() {
 		return booking_id;
 	}
@@ -47,6 +48,14 @@ public class NewBooking {
 	public void setPrice(Float price) {
 		this.price = price;
 	}
+//	 public Float getTotal_cost() {
+//	        return total_cost;
+//	    }
+//
+//	    public void setTotal_cost() {
+//	        this.total_cost = this.price*this.estimated_hour;
+//	        System.out.print(this.total_cost);
+//	    }
 	public NewBooking(int booking_id, NewService services, Float estimated_hour, LocalDate booking_date,
 			String booking_time, Float price) {
 		super();
@@ -57,6 +66,12 @@ public class NewBooking {
 		this.booking_time = booking_time;
 		this.price = price;
 	}
+	// Constructor to initialize only booking_id, estimated_hour, and booking_date
+    public NewBooking(int booking_id, LocalDate booking_date,String booking_time) {
+        this.booking_id = booking_id;
+        this.booking_date = booking_date;
+        this.booking_time = booking_time;
+    }
 	
 	@Override
 	public String toString() {
@@ -150,6 +165,7 @@ public class NewBooking {
 class NewBookingWithStatus extends NewBooking {
     private String customerName;
     private String status;
+//    private Float total_cost;
 
     public NewBookingWithStatus(int booking_id, String customerName, NewService services, Float estimated_hour, LocalDate booking_date,
             String booking_time, Float price, String status) {
@@ -157,6 +173,8 @@ class NewBookingWithStatus extends NewBooking {
         this.customerName = customerName;
         this.status = status;
     }
+    
+    
 
     public String getCustomerName() {
         return customerName;
@@ -173,6 +191,14 @@ class NewBookingWithStatus extends NewBooking {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+//    public Float getTotal_cost() {
+//        return total_cost;
+//    }
+//
+//    public void setTotal_cost(Float total_cost) {
+//        this.total_cost = total_cost;
+//    }
 
     @Override
     public String toString() {

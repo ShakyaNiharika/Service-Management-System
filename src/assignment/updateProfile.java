@@ -62,6 +62,12 @@ public class updateProfile extends Application {
 	        head.setLayoutX(20);
 	        head.setLayoutY(22);
 	        
+	        Label userName = new Label("Username: Reshma");
+	        userName.setFont(new Font("Verdana", 24));
+	        userName.setTextFill(Color.BLACK);
+	        userName.setLayoutX(790);
+	        userName.setLayoutY(22);
+	        
 	       
 	        Button dashboard=new Button();
 	        dashboard.setText("Dashboard");
@@ -300,7 +306,7 @@ public class updateProfile extends Application {
 	            // Check if the record was successfully inserted
 	            if (isSuccess) {
 	                // Show a success message or perform any other actions
-	            	showAlert("Success","Record updated successfully!");
+	            	showAlert("Success","Profile updated successfully!");
 	                System.out.println("Record updated successfully!");
 	            } else {
 	                // Show an error message or perform any other actions
@@ -338,7 +344,7 @@ public class updateProfile extends Application {
 	                profileImageView.setLayoutX(800);
 	                profileImageView.setLayoutY(140);
 	        // Add the Label to the headerPane
-	        headerPane.getChildren().addAll(head);
+	        headerPane.getChildren().addAll(head,userName);
 	        sidePane.getChildren().addAll(dashboard,user,profile,appointment,reschedule,
 	        		btnLogout,my_profile,lblusername,usernameField,lblpassword,passwordField,lbladdress,addressField,
 	        		lbldate_of_birth,datePicker,lblphone,phoneField,lblemail,emailField,lblgender,r1,r2,r3,btnUpdate,profileImageView);

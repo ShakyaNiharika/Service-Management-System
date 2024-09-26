@@ -35,7 +35,7 @@ public class customerDashboard extends Application {
 //		  String loggedInUserName = Gvar.username;
 		//Pane for background color
 	        Pane pane = new Pane();
-	        pane.setStyle("-fx-background-color: #F3D5F6;");
+	        pane.setStyle("-fx-background-color: #E6E7E8;");
 	        pane.setPrefHeight(1000);
 	        pane.setPrefWidth(1180);
 	        
@@ -85,6 +85,12 @@ public class customerDashboard extends Application {
 	        head.setTextFill(Color.BLACK);
 	        head.setLayoutX(20);
 	        head.setLayoutY(22);
+	        
+	        Label userName = new Label("Username: Reshma");
+	        userName.setFont(new Font("Verdana", 24));
+	        userName.setTextFill(Color.BLACK);
+	        userName.setLayoutX(860);
+	        userName.setLayoutY(22);
 	        
 	        
 	       
@@ -231,7 +237,7 @@ public class customerDashboard extends Application {
 	            lblPrice.setFont(new Font("Verdana", 15));
 	            lblPrice.setTextFill(Color.BLACK);
 
-	            Button btnBooking = new Button("Make Booking");
+	            Button btnBooking = new Button("Make Appointment");
 	            btnBooking.setPrefWidth(140);
 	            btnBooking.setStyle("-fx-background-color:#285884; -fx-text-fill: white;");
 
@@ -289,7 +295,7 @@ public class customerDashboard extends Application {
 
 	        
 	        // Add the Label to the headerPane
-	        headerPane.getChildren().addAll(head);
+	        headerPane.getChildren().addAll(head,userName);
 	        sidePane.getChildren().addAll(user,dashboard,profile,appointment,reschedule,btnLogout,available_service);
 //	        servicesPane.getChildren().addAll(lblPlumbing,lblDisc,lblDiscPara,lblDuration,lblPrice,btnBooking);
 	        service_twoPane.getChildren().addAll();

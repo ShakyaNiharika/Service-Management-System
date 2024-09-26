@@ -2,6 +2,7 @@ package assignment;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import assignment.NewCustomer;
-import javafx.scene.control.Alert;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,16 +30,15 @@ import java.util.List;
 
 import assignment.NewCustomer;
 
-public class manageService extends Application {
+public class staffManageService extends Application {
 	@Override
 	public void start(Stage PrimaryStage ) throws Exception {
 		// TODO Auto-generated method stub
 		//Pane for background color
         Pane pane = new Pane();
-//        pane.setStyle("-fx-background-color: #F3D5F6;");
+        pane.setStyle("-fx-background-color: #E6E7E8;");
         pane.setPrefHeight(1000);
         pane.setPrefWidth(1180);
-		
       
      // Create a Pane for the header section
         Pane headerPane = new Pane();
@@ -53,6 +53,12 @@ public class manageService extends Application {
         sidePane.setPrefWidth(278);
         sidePane.setLayoutY(80);
         
+        Label userName = new Label("Staff: Raju");
+        userName.setFont(new Font("Verdana", 24));
+        userName.setTextFill(Color.BLACK);
+        userName.setLayoutX(800);
+        userName.setLayoutY(22);
+        
         ImageView user = new ImageView(new Image(getClass().getResourceAsStream("userphoto.jpg")));
         user.setFitWidth(180); // Adjust image width as needed
         user.setFitHeight(140);
@@ -61,51 +67,51 @@ public class manageService extends Application {
         user.setLayoutY(50);
 
         // Create a Label for the header
-        Label head = new Label("Admin Dashboard");
+        Label head = new Label("Welcome To Service Management System");
         head.setFont(new Font("Verdana", 24));
         head.setTextFill(Color.BLACK);
         head.setLayoutX(20);
         head.setLayoutY(22);
+        
+//        //image of dashboard
+//        ImageView homeimg = new ImageView(new Image(getClass().getResourceAsStream("home.png")));
+//        homeimg.setFitWidth(80); // Adjust image width as needed
+//        homeimg.setFitHeight(80);
+//        homeimg.setPreserveRatio(true);
+//        homeimg.setLayoutX(15);
+//        homeimg.setLayoutY(182);
+//        
+      
+        Button manageCustomer=new Button();
+        manageCustomer.setText("Manage Customer");
+        manageCustomer.setFont(new Font("Verdana", 20));
+        manageCustomer.setTextFill(Color.BLACK);
+        manageCustomer.setLayoutX(50);
+        manageCustomer.setLayoutY(210);
+        manageCustomer.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
        
-        
-        Button addServices=new Button();
-        addServices.setText("Add Services");
-        addServices.setFont(new Font("Verdana", 20));
-        addServices.setTextFill(Color.BLACK);
-        addServices.setLayoutX(50);
-        addServices.setLayoutY(210);
-        addServices.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-        
-        addServices.setOnAction(event -> {
-	    	adminDashboard nextmanageServices = new adminDashboard();
+        //Button for the My Profile
+	    Button btnadd=new Button();
+	    btnadd.setText("Add Customer");
+	    btnadd.setFont(new Font("Verdana", 18));
+	    btnadd.setTextFill(Color.BLACK);
+	    btnadd.setLayoutX(50);
+	    btnadd.setLayoutY(260);
+	    btnadd.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+	    
+	    //When Add Customer is clicked
+	    btnadd.setOnAction(event -> {
+	    	addCustomer nextGUI = new addCustomer();
             try {
-            	((Stage) addServices.getScene().getWindow()).close();
-            	nextmanageServices.start(new Stage());
+            	((Stage) btnadd.getScene().getWindow()).close();
+                nextGUI.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        
-        Button manageServices=new Button();
-        manageServices.setText("Manage Services");
-        manageServices.setFont(new Font("Verdana", 20));
-        manageServices.setTextFill(Color.BLACK);
-        manageServices.setLayoutX(50);
-        manageServices.setLayoutY(260);
-        manageServices.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-       
-      //When Manage Services is clicked
-        manageServices.setOnAction(event -> {
-	    	manageService nextmanageServices = new manageService();
-            try {
-            	((Stage) manageServices.getScene().getWindow()).close();
-            	nextmanageServices.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        Button assignCustomer=new Button();
-	    assignCustomer.setText("View Customers");
+	    
+	    Button assignCustomer=new Button();
+	    assignCustomer.setText("Assign customers");
 	    assignCustomer.setFont(new Font("Verdana", 18));
 	    assignCustomer.setTextFill(Color.BLACK);
 	    assignCustomer.setLayoutX(50);
@@ -116,78 +122,58 @@ public class manageService extends Application {
             // Open the Update profile page
 
         	((Stage) assignCustomer.getScene().getWindow()).close();
-             adminViewCustomer nextAssignCustomer = new adminViewCustomer();
+            assignCustomer nextAssignCustomer = new assignCustomer();
             try {
             	nextAssignCustomer.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }});
-//        
-	    Button btnviewStaff=new Button();
-        btnviewStaff.setText("View Staff");
-        btnviewStaff.setFont(new Font("Verdana", 18));
-        btnviewStaff.setTextFill(Color.BLACK);
-        btnviewStaff.setLayoutX(50);
-        btnviewStaff.setLayoutY(360);
-        btnviewStaff.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-//       
-      //Navigate to view staff
-        btnviewStaff.setOnAction(event -> {
-            // Open the Update profile page
-
-        	((Stage) btnviewStaff.getScene().getWindow()).close();
-            viewStaff nextViewStaff = new viewStaff();
-            try {
-            	nextViewStaff.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }});
         
-        Button report=new Button();
-        report.setText("Report");
-        report.setFont(new Font("Verdana", 18));
-        report.setTextFill(Color.BLACK);
-        report.setLayoutX(50);
-        report.setLayoutY(410);
-        report.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+        //Button for the sideBar
+        Button services=new Button();
+        services.setText("Manage Services");
+        services.setFont(new Font("Verdana", 18));
+        services.setTextFill(Color.BLACK);
+        services.setLayoutX(50);
+        services.setLayoutY(360);
+        services.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
        
-        //Navigate to view staff
-        report.setOnAction(event -> {
-            // Open the Update profile page
 
-        	((Stage) report.getScene().getWindow()).close();
-            Total_cost nextreport = new Total_cost();
-            try {
-            	nextreport.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }});
-//	  
+//        //Button for the sideBar
+//        Button reschedule=new Button();
+//        reschedule.setText("Reschedule Services");
+//        reschedule.setFont(new Font("Verdana", 18));
+//        reschedule.setTextFill(Color.BLACK);
+//        reschedule.setLayoutX(60);
+//        reschedule.setLayoutY(360);
+//        reschedule.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+       
+        
         //Button for logout
         Button btnLogout=new Button();
         btnLogout.setText("Logout");
         btnLogout.setFont(new Font("Verdana", 20));
-//        btnLogout.setLayoutX(1);
         btnLogout.setLayoutY(560);
         btnLogout.setPrefWidth(260);
         btnLogout.setPrefHeight(40);
         btnLogout.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
         
-      //Navigate to login pagelogoutpage
         btnLogout.setOnAction(event -> {
+            // Open the Update profile page
+
         	((Stage) btnLogout.getScene().getWindow()).close();
-            staffLogin nextLoginPage = new staffLogin();
+            staffLogin nextStaffLogin = new staffLogin();
             try {
-            	nextLoginPage.start(new Stage());
+            	nextStaffLogin.start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
-        }});
+            }});
         
-        Label topic = new Label("Manage Services");
-        topic.setFont(new Font("Verdana", 24));
-        topic.setTextFill(Color.BLACK);
-        topic.setLayoutX(360);
-        topic.setLayoutY(40);
+        Label lblHeadManageCus = new Label("Manage service");
+        lblHeadManageCus.setLayoutX(360);
+        lblHeadManageCus.setLayoutY(52);
+        lblHeadManageCus.setFont(new Font("Verdana", 20)); 
+        lblHeadManageCus.setTextFill(Color.BLACK);
         
         //Main content
         TableView<NewService> table1= new TableView<NewService>();
@@ -325,7 +311,7 @@ public class manageService extends Application {
 			                NewService person = new NewService(Service_id, Service_name, Description, Price);
 			                boolean res = updateRecord(person); // call method
 			                if (res) {
-			                    showAlert("Success", "Service updated successfully!");
+			                    showAlert("Success", "Record updated successfully!");
 			                    System.out.println("Record Saved");
 			                 // Fefress the page
 			                	((Stage) btnUpdate.getScene().getWindow()).close();
@@ -340,18 +326,17 @@ public class manageService extends Application {
 			                }
 			            }
 			        });
-			        
 
-        
-        headerPane.getChildren().addAll(head);
-        sidePane.getChildren().addAll(user,addServices,manageServices,assignCustomer,btnviewStaff,
-        		report,btnLogout,topic,table1,lblserviceId,serviceIdField,lblservicename,serviceField,lbldescription,descriptionField,lblPrice,priceField,btnSearch,btnUpdate);
+
+  
+        headerPane.getChildren().addAll(head,userName);
+        sidePane.getChildren().addAll(user,manageCustomer,btnadd,assignCustomer,services,
+        		btnLogout,lblHeadManageCus,table1,lblserviceId,serviceIdField,lblservicename,serviceField,
+        		lbldescription,descriptionField,lblPrice,priceField,btnSearch,btnUpdate);
 //        pane.getChildren().add(table1);
         Pane rootPane = new Pane(pane,headerPane, sidePane);
         // Create a Scene with the root Pane
         Scene scene = new Scene(rootPane);
-        
-        
         
         PrimaryStage.setTitle("MyWindow");
         PrimaryStage.setWidth(1100);
@@ -463,6 +448,7 @@ public class manageService extends Application {
 		}
 		return result;
 	}
+	
 	// Method to display an alert dialog
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

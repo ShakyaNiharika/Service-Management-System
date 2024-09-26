@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -35,14 +36,13 @@ public class staffLogin extends Application {
 
 		  	//Pane for background color
 	        Pane pane = new Pane();
-	        pane.setStyle("-fx-background-color: lightgreen;");
+	        pane.setStyle("-fx-background-color: #E6E7E8;");
 	        pane.setPrefHeight(1000);
 	        pane.setPrefWidth(1000);
 	        
-	        
 	        // Create a Pane for login part
 	        Pane sidePane = new Pane();
-	        sidePane.setStyle("-fx-background-color: lightblue;");
+	        sidePane.setStyle("-fx-background-color: #CBD5E1;");
 	        sidePane.setPrefHeight(580);
 	        sidePane.setPrefWidth(450);
 	        sidePane.setLayoutX(494);
@@ -50,7 +50,7 @@ public class staffLogin extends Application {
 	        
 	     // Create a Pane for picture part
 	        Pane leftPane = new Pane();
-	        leftPane.setStyle("-fx-background-color: lightyellow;");
+	        leftPane.setStyle("-fx-background-color: #FDFEFE;");
 	        leftPane.setPrefHeight(580);
 	        leftPane.setPrefWidth(450);
 	        leftPane.setLayoutX(44);
@@ -198,6 +198,7 @@ public class staffLogin extends Application {
 	            boolean isSuccess = loginUser(email_address, password);
 	            
 	            if (isSuccess) {
+	            	showAlert("Success", "Login Successful");
 	                // Open the customer Dashboard
 	                StaffDashboard nextGUI = new StaffDashboard();
 	                try {
@@ -228,7 +229,7 @@ public class staffLogin extends Application {
 	        btnCreateRegis.setLayoutY(510);
 	        btnCreateRegis.setPrefWidth(120);
 	        btnCreateRegis.setPrefHeight(30);
-	        btnCreateRegis.setStyle("-fx-background-color:lightblue; -fx-text-fill: #285884;");
+	        btnCreateRegis.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: #285884;");
 	        
 	        btnCreateRegis.setOnAction(event -> {
 	            // Open the login page
@@ -253,14 +254,6 @@ public class staffLogin extends Application {
 	        primaryStage.setX(100);
 	        primaryStage.setY(20);
 	        primaryStage.setScene(scene);
-
-//	         Setting the icon of the stage (assuming the iconImage variable is defined)
-
-//	         Image iconImage = new Image("file:icon.png");
-	//
-//	         primaryStage.getIcons().add(iconImage);
-
-
 
 	        primaryStage.show();
 
@@ -295,6 +288,13 @@ public class staffLogin extends Application {
 			}
 			return result;
 		}
+	  private void showAlert(String title, String content) {
+	        Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle(title);
+	        alert.setHeaderText(null);
+	        alert.setContentText(content);
+	        alert.showAndWait();
+	    }
 
 
     public static void main(String[] args) {

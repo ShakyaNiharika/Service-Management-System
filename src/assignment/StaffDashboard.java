@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import assignment.NewCustomer;
 
+import java.awt.ScrollPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,7 +35,11 @@ public class StaffDashboard extends Application {
 	@Override
 	public void start(Stage PrimaryStage ) throws Exception {
 		// TODO Auto-generated method stub
-		Pane pane = new Pane();
+		//Pane for background color
+        Pane pane = new Pane();
+        pane.setStyle("-fx-background-color: #E6E7E8;");
+        pane.setPrefHeight(1000);
+        pane.setPrefWidth(1180);
       
      // Create a Pane for the header section
         Pane headerPane = new Pane();
@@ -63,13 +68,13 @@ public class StaffDashboard extends Application {
         head.setLayoutX(20);
         head.setLayoutY(22);
         
-        //image of dashboard
-        ImageView homeimg = new ImageView(new Image(getClass().getResourceAsStream("home.png")));
-        homeimg.setFitWidth(80); // Adjust image width as needed
-        homeimg.setFitHeight(80);
-        homeimg.setPreserveRatio(true);
-        homeimg.setLayoutX(15);
-        homeimg.setLayoutY(182);
+        Label userName = new Label("Staff: Raju");
+        userName.setFont(new Font("Verdana", 24));
+        userName.setTextFill(Color.BLACK);
+        userName.setLayoutX(860);
+        userName.setLayoutY(22);
+        
+       
         
       
         Button manageCustomer=new Button();
@@ -119,14 +124,25 @@ public class StaffDashboard extends Application {
                 e.printStackTrace();
             }});
         
-//        //Button for the sideBar
-//        Button appointment=new Button();
-//        appointment.setText("Arrange Appointments");
-//        appointment.setFont(new Font("Verdana", 18));
-//        appointment.setTextFill(Color.BLACK);
-//        appointment.setLayoutX(50);
-//        appointment.setLayoutY(360);
-//        appointment.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+        //Button for the sideBar
+        Button services=new Button();
+        services.setText("Manage Services");
+        services.setFont(new Font("Verdana", 18));
+        services.setTextFill(Color.BLACK);
+        services.setLayoutX(50);
+        services.setLayoutY(360);
+        services.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+        
+        services.setOnAction(event -> {
+            // Open the Update profile page
+
+        	((Stage) services.getScene().getWindow()).close();
+            staffManageService nextmanagesevice = new staffManageService();
+            try {
+            	nextmanagesevice.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }});
        
 
 //        //Button for the sideBar
@@ -143,7 +159,7 @@ public class StaffDashboard extends Application {
         Button btnLogout=new Button();
         btnLogout.setText("Logout");
         btnLogout.setFont(new Font("Verdana", 20));
-//        btnLogout.setLayoutX(1);
+        btnLogout.setLayoutX(14);
         btnLogout.setLayoutY(560);
         btnLogout.setPrefWidth(260);
         btnLogout.setPrefHeight(40);
@@ -160,11 +176,7 @@ public class StaffDashboard extends Application {
                 e.printStackTrace();
             }});
         
-        Label lblHeadManageCus = new Label("Manage Customer");
-        lblHeadManageCus.setLayoutX(360);
-        lblHeadManageCus.setLayoutY(52);
-        lblHeadManageCus.setFont(new Font("Verdana", 20)); 
-        lblHeadManageCus.setTextFill(Color.BLACK);
+      
         
         //Main content
         TableView<NewCustomer> table1= new TableView<NewCustomer>();
@@ -216,7 +228,7 @@ public class StaffDashboard extends Application {
 				for(NewCustomer person: persons) {
 					table1.getItems().add(person);
 				}
-
+				
 				 Label lblcusId = new Label("Customer ID");
 				 lblcusId.setLayoutX(310);
 				 lblcusId.setLayoutY(370);
@@ -412,7 +424,7 @@ public class StaffDashboard extends Application {
 			        });
 
 			        Button btnDelete=new Button();
-			        btnDelete.setText("Update");
+			        btnDelete.setText("Delete");
 			        btnDelete.setLayoutX(720);
 			        btnDelete.setLayoutY(530);
 			        btnDelete.setPrefWidth(100);
@@ -421,12 +433,13 @@ public class StaffDashboard extends Application {
 
 
   
-        headerPane.getChildren().addAll(head);
-        sidePane.getChildren().addAll(homeimg,user,manageCustomer,btnadd,assignCustomer,
-        		btnLogout,lblHeadManageCus,table1,lblcusId,customerField,lblusername,UsernameField,lblpassword,passwordField,
+        headerPane.getChildren().addAll(head,userName);
+        sidePane.getChildren().addAll(user,manageCustomer,btnadd,assignCustomer,services,
+        		btnLogout,table1,lblcusId,customerField,lblusername,UsernameField,lblpassword,passwordField,
         		lbladdress,addressField,lblphone,phoneField,lblemail,emailField,lbldate,date_of_birthField,lblgender,r1,r2,r3,btnSearch,btnUpdate,btnDelete);
 //        pane.getChildren().add(table1);
-        Pane rootPane = new Pane(headerPane, sidePane);
+       
+        Pane rootPane = new Pane(pane,headerPane, sidePane);
         // Create a Scene with the root Pane
         Scene scene = new Scene(rootPane);
         

@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -31,20 +32,19 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 
 public class firstWindow extends Application {
-//	static int LoginStore=-1;
+
 	  @Override
 	    public void start(Stage primaryStage) throws Exception {
 		  	
 		  	//Pane for background color
 	        Pane pane = new Pane();
-	        pane.setStyle("-fx-background-color: lightgreen;");
+	        pane.setStyle("-fx-background-color: #E6E7E8;");
 	        pane.setPrefHeight(1000);
 	        pane.setPrefWidth(1000);
 	        
-	        
 	        // Create a Pane for login part
 	        Pane sidePane = new Pane();
-	        sidePane.setStyle("-fx-background-color: lightblue;");
+	        sidePane.setStyle("-fx-background-color: #CBD5E1;");
 	        sidePane.setPrefHeight(580);
 	        sidePane.setPrefWidth(450);
 	        sidePane.setLayoutX(494);
@@ -52,7 +52,7 @@ public class firstWindow extends Application {
 	        
 	     // Create a Pane for picture part
 	        Pane leftPane = new Pane();
-	        leftPane.setStyle("-fx-background-color: lightyellow;");
+	        leftPane.setStyle("-fx-background-color: #FDFEFE;");
 	        leftPane.setPrefHeight(580);
 	        leftPane.setPrefWidth(450);
 	        leftPane.setLayoutX(44);
@@ -61,15 +61,15 @@ public class firstWindow extends Application {
 	        
 	        // Create an ImageView to display the image
             ImageView profileImageView = new ImageView(new Image(getClass().getResourceAsStream("front.jpg")));
-            profileImageView.setFitWidth(300); // Adjust image width as needed
-            profileImageView.setFitHeight(240);
+            profileImageView.setFitWidth(340); // Adjust image width as needed
+            profileImageView.setFitHeight(330);
             profileImageView.setPreserveRatio(true);
-            profileImageView.setLayoutX(100);
+            profileImageView.setLayoutX(65);
             profileImageView.setLayoutY(160);
             
          // Creating a Label
 	        Label txtfield = new Label("Service Management System");
-	        txtfield.setLayoutX(70);
+	        txtfield.setLayoutX(60);
 	        txtfield.setLayoutY(100);
 	        txtfield.setFont(new Font("Verdana", 24)); 
 	        txtfield.setTextFill(Color.BLACK);
@@ -202,13 +202,8 @@ public class firstWindow extends Application {
 	            int isSuccess = loginUser(email_address, password);
 //	            Object user=loginUser( email_address,  password);
 	            if (isSuccess>0) {
-//	            	int customerID = tovalidatelogin(email_address, password);
-//	            	if (customerID !=-1) {
-//	            		LoginStore = customer_id;
-//	            		primaryStage.close();
-//	            	}
-	                // Open the customer Dashboard
-//	            	System.out.println(isSuccess);
+//	            	
+	            	 showAlert("Success", "Login Successful");
 	            	Gvar.id=isSuccess;
 	                customerDashboard nextGUI = new customerDashboard();
 	                try {
@@ -239,7 +234,7 @@ public class firstWindow extends Application {
 	        btnCreateRegis.setLayoutY(510);
 	        btnCreateRegis.setPrefWidth(120);
 	        btnCreateRegis.setPrefHeight(30);
-	        btnCreateRegis.setStyle("-fx-background-color:lightblue; -fx-text-fill: #285884;");
+	        btnCreateRegis.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: #285884;");
 	        
 	        btnCreateRegis.setOnAction(event -> {
 	            // Open the login page
@@ -264,13 +259,6 @@ public class firstWindow extends Application {
 	        primaryStage.setX(100);
 	        primaryStage.setY(20);
 	        primaryStage.setScene(scene);
-
-//	         Setting the icon of the stage (assuming the iconImage variable is defined)
-
-//	         Image iconImage = new Image("file:icon.png");
-	//
-//	         primaryStage.getIcons().add(iconImage);
-
 
 
 	        primaryStage.show();
@@ -310,40 +298,14 @@ public class firstWindow extends Application {
 			return result;
 		};
 		
-		//this
-//		public int tovalidatelogin(String email, String password) {
-//		    int customerID = -1; // Initialize customerID to indicate failure
-//		    String DRIVER = "com.mysql.cj.jdbc.Driver";
-//		    String HOST = "localhost";
-//		    int PORT = 3306;
-//		    String DATABASE = "assignment";
-//		    String DBUSER = "root";
-//		    String DBPASS = "niharika@123";
-//		    String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
-//		    String sql = "SELECT customer_id FROM customers WHERE email_address=? AND pass_word=?";
-//
-//		    try {
-//		        Class.forName(DRIVER); // Loading driver
-//		        Connection conn = DriverManager.getConnection(URL, DBUSER, DBPASS); // Establishing connection with the database server
-//		        PreparedStatement pstat = conn.prepareStatement(sql);
-//		        pstat.setString(1, email);
-//		        pstat.setString(2, password);
-//		        ResultSet rs = pstat.executeQuery(); // Execute query
-//		        if (rs.next()) {
-//		            customerID = rs.getInt("customer_id"); // Get the customer ID from the result set
-//		        }
-//		        rs.close();
-//		        pstat.close();
-//		        conn.close();
-//		    } catch (Exception ex) {
-//		        System.out.println("Error : " + ex.getMessage());
-//		    }
-//		    return customerID;
-//		}
-
-//	  public static int getLogin_id() {
-//		  return LoginStore;
-//	  }
+	
+		 private void showAlert(String title, String content) {
+		        Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle(title);
+		        alert.setHeaderText(null);
+		        alert.setContentText(content);
+		        alert.showAndWait();
+		    }
 
 
     public static void main(String[] args) {

@@ -146,15 +146,25 @@ public class viewStaff extends Application {
                 e.printStackTrace();
             }});
         
-////        //Button for the sideBar
-////        Button reschedule=new Button();
-////        reschedule.setText("Reschedule Services");
-////        reschedule.setFont(new Font("Verdana", 18));
-////        reschedule.setTextFill(Color.BLACK);
-////        reschedule.setLayoutX(60);
-////        reschedule.setLayoutY(360);
-////        reschedule.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
-//       
+        Button report=new Button();
+        report.setText("Report");
+        report.setFont(new Font("Verdana", 18));
+        report.setTextFill(Color.BLACK);
+        report.setLayoutX(50);
+        report.setLayoutY(410);
+        report.setStyle("-fx-background-color:#CBD5E1; -fx-text-fill: black;");
+       
+        //Navigate to view staff
+        report.setOnAction(event -> {
+            // Open the Update profile page
+
+        	((Stage) report.getScene().getWindow()).close();
+            Total_cost nextreport = new Total_cost();
+            try {
+            	nextreport.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }});
 //        
         //Button for logout
         Button btnLogout=new Button();
@@ -233,205 +243,10 @@ public class viewStaff extends Application {
 					table1.getItems().add(person);
 				}
 
-//				 Label lblcusId = new Label("Customer ID");
-//				 lblcusId.setLayoutX(310);
-//				 lblcusId.setLayoutY(370);
-//				 lblcusId.setFont(new Font("Verdana", 12)); 
-//				 lblcusId.setTextFill(Color.BLACK);	
-//				 
-//			        TextField customerField = new TextField();
-//			        customerField.setLayoutX(410);
-//			        customerField.setLayoutY(360);
-//			        customerField.setPrefWidth(220);
-//			        customerField.setPrefHeight(30);
-//			        
-//			        Label lblusername = new Label("Username");
-//			        lblusername.setLayoutX(700);
-//			        lblusername.setLayoutY(370);
-//			        lblusername.setFont(new Font("Verdana", 14)); 
-//			        lblusername.setTextFill(Color.BLACK);	
-//			        
-//			        TextField UsernameField = new TextField();
-//			        UsernameField.setLayoutX(800);
-//			        UsernameField.setLayoutY(360);
-//			        UsernameField.setPrefWidth(220);
-//			        UsernameField.setPrefHeight(30);
-//			        
-//			        Label lblpassword = new Label("Password");
-//			        lblpassword.setLayoutX(310);
-//			        lblpassword.setLayoutY(400);
-//			        lblpassword.setFont(new Font("Verdana", 16)); 
-//			        lblpassword.setTextFill(Color.BLACK);	
-//			        
-//			        TextField passwordField = new TextField();
-//			        passwordField.setLayoutX(410);
-//			        passwordField.setLayoutY(400);
-//			        passwordField.setPrefWidth(220);
-//			        passwordField.setPrefHeight(30);
-//			        
-//			        Label lbladdress = new Label("Address");
-//			        lbladdress.setLayoutX(700);
-//			        lbladdress.setLayoutY(410);
-//			        lbladdress.setFont(new Font("Verdana", 14)); 
-//			        lbladdress.setTextFill(Color.BLACK);	
-//			        
-//			        TextField addressField = new TextField();
-//			        addressField.setLayoutX(800);
-//			        addressField.setLayoutY(400);
-//			        addressField.setPrefWidth(220);
-//			        addressField.setPrefHeight(30);
-//			        
-//			        Label lblphone = new Label("Phone Number");
-//			        lblphone.setLayoutX(295);
-//			        lblphone.setLayoutY(440);
-//			        lblphone.setFont(new Font("Verdana", 14)); 
-//			        lblphone.setTextFill(Color.BLACK);	
-//			        
-//			        TextField phoneField = new TextField();
-//			        phoneField.setLayoutX(410);
-//			        phoneField.setLayoutY(440);
-//			        phoneField.setPrefWidth(220);
-//			        phoneField.setPrefHeight(30);
-//			        
-//			        Label lblemail = new Label("Email Address");
-//			        lblemail.setLayoutX(700);
-//			        lblemail.setLayoutY(440);
-//			        lblemail.setFont(new Font("Verdana", 12)); 
-//			        lblemail.setTextFill(Color.BLACK);	
-//			        
-//			        TextField emailField = new TextField();
-//			        emailField.setLayoutX(800);
-//			        emailField.setLayoutY(440);
-//			        emailField.setPrefWidth(220);
-//			        emailField.setPrefHeight(30);
-//			        
-//			        Label lbldate = new Label("Join Date");
-//			        lbldate.setLayoutX(295);
-//			        lbldate.setLayoutY(480);
-//			        lbldate.setFont(new Font("Verdana", 14)); 
-//			        lbldate.setTextFill(Color.BLACK);	
-//			        
-//			        DatePicker date_of_birthField = new DatePicker();
-//			        date_of_birthField.setLayoutX(410);
-//			        date_of_birthField.setLayoutY(480);
-//			        date_of_birthField.setPrefWidth(220);
-//			        date_of_birthField.setPrefHeight(30);
-//			        
-//			        Label lblgender = new Label("Gender");
-//			        lblgender.setLayoutX(700);
-//			        lblgender.setLayoutY(480);
-//			        lblgender.setFont(new Font("Verdana", 14)); 
-//			        lblgender.setTextFill(Color.BLACK);
-//			        
-//			        RadioButton r1= new RadioButton("Male");
-//			        r1.setLayoutX(800);
-//			        r1.setLayoutY(480);
-//			        r1.setUserData("Male");
-//			        
-//			        RadioButton r2= new RadioButton("Female");
-//			        r2.setLayoutX(870);
-//			        r2.setLayoutY(480);
-//			        r2.setUserData("Female");
-//			        
-//			        RadioButton r3= new RadioButton("Others");
-//			        r3.setLayoutX(950);
-//			        r3.setLayoutY(480);
-//			        r3.setUserData("Others");
-//			        
-//			        ToggleGroup group=new ToggleGroup();
-//			        r1.setToggleGroup(group);
-//			        r2.setToggleGroup(group);
-//			        r3.setToggleGroup(group);
-			        
-//			        Button btnSearch=new Button();
-//			        btnSearch.setText("Search");
-//			        btnSearch.setLayoutX(480);
-//			        btnSearch.setLayoutY(530);
-//			        btnSearch.setPrefWidth(100);
-//			        btnSearch.setPrefHeight(40);
-////			        btnSearch.setStyle("-fx-background-color:#285884; -fx-text-fill: white;");
-//			        btnSearch.setOnAction((event) -> {
-//			            // Check if customer ID is entered
-//			            if (customerField.getText().isEmpty()) {
-//			                showAlert("Error", "Please enter the customer ID.");
-//			            } else {
-//			                // Customer ID is entered, proceed with search
-//			                int customer_id = Integer.parseInt(customerField.getText());
-//			                NewCustomer person = searchRecord(customer_id);
-//			                if (person != null) {
-//			                    // Display all values
-//			                    UsernameField.setText(person.getUsername());
-//			                    passwordField.setText(person.getPass_word());
-//			                    addressField.setText(person.getAddress());
-//			                    phoneField.setText(person.getPhone_number());
-//			                    emailField.setText(person.getEmail_address());
-//			                    date_of_birthField.setValue(person.getDate_of_birth());
-//
-//			                    // Gender
-//			                    if (person.getGender().equals("Male")) {
-//			                        r1.setSelected(true);
-//			                    } else {
-//			                        r2.setSelected(true);
-//			                    }
-//
-//			                    showAlert("Success", "Record found");
-//			                } else {
-//			                    showAlert("Error", "Record not found");
-//			                }
-//			            }
-//			        });
-//
-//			        
-//			        Button btnUpdate=new Button();
-//			        btnUpdate.setText("Update");
-//			        btnUpdate.setLayoutX(590);
-//			        btnUpdate.setLayoutY(530);
-//			        btnUpdate.setPrefWidth(100);
-//			        btnUpdate.setPrefHeight(40);
-//			        
-//			       
-//			        btnUpdate.setOnAction((event) -> {
-//			            // Check if customer ID is entered
-//			            if (customerField.getText().isEmpty()) {
-//			                showAlert("Error", "Please select the customer ID to update.");
-//			            } else {
-//			                // Reading values from UI
-//			                int customer_id = Integer.parseInt(customerField.getText()); // string->int
-//			                String Username = UsernameField.getText();
-//			                String Password = passwordField.getText();
-//			                String address = addressField.getText();
-//			                String phone = phoneField.getText();
-//			                String email_address = emailField.getText();
-//			                LocalDate Date_of_birth = date_of_birthField.getValue(); // Convert string to LocalDate
-//			                String Gender = "Female";
-//			                if (r1.isSelected()) {
-//			                    Gender = "Male";
-//			                }
-//
-//			                NewStaff person = new NewStaff(customer_id, Username, Password, address, phone, email_address, join_date, Gender);
-//			                boolean res = updateRecord(person); // call method
-//			                if (res) {
-//			                    showAlert("Success", "Record updated successfully!");
-//			                    System.out.println("Record Saved");
-//			                 // Fefress the page
-//			                	((Stage) btnUpdate.getScene().getWindow()).close();
-//			                    viewStaff OpenStaffDashboard = new viewStaff();
-//			                    try {
-//			                    	OpenStaffDashboard.start(new Stage());
-//			                    } catch (Exception e) {
-//			                        e.printStackTrace();
-//			                }} else {
-//			                	  showAlert("Error", "Failed to update the record.");
-//			                      System.out.println("Error: Failed to update the record.");
-//			                }
-//			            }
-//			        });
-
-			        
-			        
+//				
 			        
         headerPane.getChildren().addAll(head);
-        sidePane.getChildren().addAll(user,addServices,manageServices,assignCustomer,btnviewStaff,btnLogout,
+        sidePane.getChildren().addAll(user,addServices,manageServices,assignCustomer,btnviewStaff,report,btnLogout,
         		lblHeadManageCus,table1);
 //        pane.getChildren().add(table1);
         Pane rootPane = new Pane(pane,headerPane, sidePane);
